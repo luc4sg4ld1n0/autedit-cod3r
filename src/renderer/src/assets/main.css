@@ -32,45 +32,6 @@ body {
   backdrop-filter: blur(12px);
 }
 
-.tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.tab-button {
-  border: 1px solid rgba(122, 66, 209, 0.14);
-  background: rgba(241, 233, 255, 0.9);
-  color: #5e4787;
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    transform 180ms ease,
-    background 180ms ease,
-    color 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.tab-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(122, 66, 209, 0.14);
-}
-
-.tab-button:focus-visible {
-  outline: 3px solid rgba(161, 92, 255, 0.24);
-  outline-offset: 4px;
-}
-
-.tab-active {
-  background: linear-gradient(135deg, #7a42d1 0%, #a15cff 100%);
-  color: #faf7ff;
-  box-shadow: 0 14px 30px rgba(122, 66, 209, 0.24);
-}
-
 .eyebrow {
   display: inline-block;
   margin-bottom: 14px;
