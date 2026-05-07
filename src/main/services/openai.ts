@@ -94,6 +94,31 @@ export async function fetchTranscription(sourcePath: string): Promise<Transcript
   return (await response.json()) as TranscriptionResponse
 }
 
+export async function transcribeAudioWithGpt4o(sourcePath: string): Promise<TranscriptionResponse> {
+  const apiKey = getApiKey()
+  const audioBuffer = await readFile(sourcePath)
+  const formData = new FormData()
+
+  formData.append('file', new Blob([audioBuffer], { type: getMimeType(sourcePath) }), basename(sourcePath))
+  formData.append('model', 'gpt-4o-transcribe')
+  formData.append('response_format', 'verbose_json')
+
+  const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`
+    },
+    body: formData
+  })
+
+  if (!response.ok) {
+    const errorText = await response.text()
+    throw new Error(errorText || 'Não foi possível transcrever o áudio com gpt-4o-transcribe.')
+  }
+
+  return (await response.json()) as TranscriptionResponse
+}
+
 export async function analyzeTranscriptForCleanup(
   segments: TranscriptSegment[]
 ): Promise<CleanupAnalysisResult> {

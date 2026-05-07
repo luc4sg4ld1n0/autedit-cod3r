@@ -9,7 +9,9 @@ export function parseTranscriptSegments(transcriptContent: string): TranscriptSe
 
   const segments = lines
     .map((line, index) => {
-      const match = line.match(/^\[(\d{2}:\d{2}:\d{2}\.\d{3}) - (\d{2}:\d{2}:\d{2}\.\d{3})\]\s+(.+)$/)
+      const match = line.match(
+        /^\[(\d{2}:\d{2}:\d{2}(?:\.\d{3})?) - (\d{2}:\d{2}:\d{2}(?:\.\d{3})?)\]\s+(.+)$/
+      )
 
       if (!match) {
         return null

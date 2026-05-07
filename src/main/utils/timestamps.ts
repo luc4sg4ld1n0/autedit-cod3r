@@ -10,7 +10,7 @@ export function formatTimestamp(seconds: number): string {
 }
 
 export function parseTimestamp(timestamp: string): number {
-  const match = timestamp.match(/^(\d{2}):(\d{2}):(\d{2})\.(\d{3})$/)
+  const match = timestamp.match(/^(\d{2}):(\d{2}):(\d{2})(?:\.(\d{3}))?$/)
 
   if (!match) {
     throw new Error(`Timestamp inválido encontrado: ${timestamp}`)
@@ -22,6 +22,6 @@ export function parseTimestamp(timestamp: string): number {
     Number(hours) * 3600 +
     Number(minutes) * 60 +
     Number(seconds) +
-    Number(milliseconds) / 1000
+    Number(milliseconds ?? '0') / 1000
   )
 }
